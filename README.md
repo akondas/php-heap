@@ -1,2 +1,7 @@
-# php-heap
-Heap - specialized tree-based data structure in pure PHP
+# PHP-Heap
+
+Heap - specialized tree-based data structure.
+
+This repository contains different heap implementations written in pure PHP.
+
+## BinaryHeap
