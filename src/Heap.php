@@ -24,4 +24,6 @@ interface Heap
     public function size(): int;
 
     public function isEmpty(): bool;
+
+    public function nodes(): array;
 }

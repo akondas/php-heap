@@ -34,7 +34,15 @@ final class BinaryHeap implements Heap
 
     public function pop()
     {
-        // TODO: Implement pop() method.
+        $peek = $this->nodes[0];
+        $last = array_pop($this->nodes);
+
+        if (!$this->isEmpty()) {
+            $this->nodes[0] = $last;
+            $this->sinkDown(0);
+        }
+
+        return $peek;
     }
 
     public function size(): int
@@ -45,6 +53,11 @@ final class BinaryHeap implements Heap
     public function isEmpty(): bool
     {
         return $this->nodes === [];
+    }
+
+    public function nodes(): array
+    {
+        return $this->nodes;
     }
 
     private function bubbleUp(int $index): void
@@ -63,6 +76,35 @@ final class BinaryHeap implements Heap
             $this->nodes[$parentIndex] = $node;
             $this->nodes[$index] = $parent;
             $index = $parentIndex;
+        }
+    }
+
+    private function sinkDown(int $index): void
+    {
+        $size = $this->size();
+        $node = $this->nodes[$index];
+        $score = ($this->scoreFunction)($node);
+
+        while (true) {
+            $child2Index = ($index + 1) * 2;
+            $child1Index = $child2Index - 1;
+            $swap = null;
+
+            if ($child1Index < $size && ($child1Score = ($this->scoreFunction)($this->nodes[$child1Index])) < $score) {
+                $swap = $child1Index;
+            }
+
+            if ($child2Index < $size && ($this->scoreFunction)($this->nodes[$child2Index]) < ($swap === null ? $score : $child1Score)) {
+                $swap = $child2Index;
+            }
+
+            if ($swap === null) {
+                break;
+            }
+
+            $this->nodes[$index] = $this->nodes[$swap];
+            $this->nodes[$swap] = $node;
+            $index = $swap;
         }
     }
 }
