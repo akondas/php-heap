@@ -7,9 +7,9 @@ namespace Akondas;
 final class BinaryHeap implements Heap
 {
     /**
-     * @var array
+     * @var mixed[]
      */
-    private $elements = [];
+    private $nodes = [];
 
     /**
      * @var callable
@@ -23,12 +23,13 @@ final class BinaryHeap implements Heap
 
     public function peek()
     {
-        // TODO: Implement peek() method.
+        return $this->nodes[0];
     }
 
-    public function push($element): void
+    public function push($node): void
     {
-        // TODO: Implement push() method.
+        $this->nodes[] = $node;
+        $this->bubbleUp(count($this->nodes) - 1);
     }
 
     public function pop()
@@ -38,11 +39,30 @@ final class BinaryHeap implements Heap
 
     public function size(): int
     {
-        return count($this->elements);
+        return count($this->nodes);
     }
 
     public function isEmpty(): bool
     {
-        return $this->elements === [];
+        return $this->nodes === [];
+    }
+
+    private function bubbleUp(int $index): void
+    {
+        $node = $this->nodes[$index];
+        $score = ($this->scoreFunction)($node);
+
+        while ($index > 0) {
+            $parentIndex = (int) floor(($index + 1) / 2) - 1;
+            $parent = $this->nodes[$parentIndex];
+
+            if ($score >= ($this->scoreFunction)($parent)) {
+                break;
+            }
+
+            $this->nodes[$parentIndex] = $node;
+            $this->nodes[$index] = $parent;
+            $index = $parentIndex;
+        }
     }
 }

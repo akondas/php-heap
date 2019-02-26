@@ -12,9 +12,9 @@ interface Heap
     public function peek();
 
     /**
-     * @param mixed $element
+     * @param mixed $node
      */
-    public function push($element): void;
+    public function push($node): void;
 
     /**
      * @return mixed
