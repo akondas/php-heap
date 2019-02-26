@@ -2,6 +2,12 @@
     "name": "akondas/php-heap",
     "type": "library",
     "description": "Heap - specialized tree-based data structure",
+    "keywords": [
+        "php",
+        "heap",
+        "binary heap",
+        "priority queue"
+    ],
     "license": "MIT",
     "authors": [
         {
