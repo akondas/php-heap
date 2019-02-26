@@ -1,3 +1,5 @@
+[DEPRACTED] Moved to https://github.com/php-ai/php-data-structures
+
 # PHP-Heap
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)](https://php.net/)
